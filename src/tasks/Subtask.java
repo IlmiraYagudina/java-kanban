@@ -13,6 +13,7 @@ public class Subtask extends Task {
     }
 
     public int getEpicId() {
+
         return epicId;
     }
 
@@ -27,6 +28,7 @@ public class Subtask extends Task {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), epicId);
     }
 
