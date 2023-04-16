@@ -3,8 +3,8 @@ package history;
 import tasks.Task;
 import java.util.List;
 
-public abstract class HistoryManager {
-    public abstract void add(Task task);
+public interface HistoryManager {
+    void add(Task task); //добавление задачи
 
-    public abstract List<Task> getHistory();
+    List<Task> getHistory(); //получить истории задач (10 пуктов)
 }

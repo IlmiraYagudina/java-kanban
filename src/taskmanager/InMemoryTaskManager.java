@@ -10,19 +10,12 @@ import java.util.*;
 
 public class InMemoryTaskManager implements TaskManager {
     private static int id = 0;
-
     private final Map<Integer, Task> tasks = new HashMap<>();
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
     private final Map<Integer, Epic> epics = new HashMap<>();
-    private final HistoryManager historyManager;
-
-    public InMemoryTaskManager(HistoryManager historyManager) {
-
-        this.historyManager = historyManager;
-    }
+    private final HistoryManager historyManager = Managers.getDefaultHistory();
 
     public int generateId() {
-
         return ++id;
     }
 
@@ -141,7 +134,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Epic> getAllEpics() {
+    public List<Object> getAllEpics() {
         if (epics.size() == 0) {
             System.out.println("Epic list is empty");
             return Collections.emptyList();
@@ -150,7 +143,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getAllSubtasks() {
+    public List<Object> getAllSubtasks() {
         if (subtasks.size() == 0) {
             System.out.println("Subtasks list is empty");
             return Collections.emptyList();
@@ -159,14 +152,14 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getAllSubtasksByEpicId(int id) {
+    public List<Object> getAllSubtasksByEpicId(int id) {
         if (epics.containsKey(id)) {
             ArrayList<Subtask> subtasksNew = new ArrayList<>();
             Epic epic = epics.get(id);
             for (int i = 0; i < epic.getSubtaskIds().size(); i++) {
                 subtasksNew.add(subtasks.get(epic.getSubtaskIds().get(i)));
             }
-            return subtasksNew;
+            return Collections.singletonList(subtasksNew);
         } else {
             return Collections.emptyList();
         }
@@ -191,8 +184,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    @Override
-    public void updateStatusEpic(Epic epic) {
+    private void updateStatusEpic(Epic epic) {
         if (epics.containsKey(epic.getId())) {
             if (epic.getSubtaskIds().size() == 0) {
                 epic.setStatus(TaskStatus.NEW);
@@ -293,8 +285,8 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Task> getHistory() {
-        return (ArrayList<Task>) historyManager.getHistory();
+    public List<Task> getHistory() {
+        return historyManager.getHistory();
     }
 }
 
