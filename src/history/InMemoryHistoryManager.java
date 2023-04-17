@@ -13,7 +13,8 @@ public class InMemoryHistoryManager implements HistoryManager {
     public void add(Task task) {
         if (task != null) {
             if (historyTasks.size() >= LIMIT_HISTORY_TASKS) {
-                historyTasks.remove(0);}
+                historyTasks.remove(0);
+            }
             historyTasks.add(task);
         } else {
             System.out.println("Task not found");
