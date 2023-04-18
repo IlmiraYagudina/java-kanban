@@ -34,9 +34,9 @@ public interface TaskManager {
 
     List<Task> getAllTasks(); //посмотреть все задачи
 
-    List<Object> getAllEpics(); //посмотреть все эпики
+    List<Epic> getAllEpics(); //посмотреть все эпики
 
-    List<Object> getAllSubtasks(); //посмотреть все подзаписи
+    List<Subtask> getAllSubtasks(); //посмотреть все подзаписи
 
     List<Object> getAllSubtasksByEpicId(int id); //посмотреть все записи в эпике
 

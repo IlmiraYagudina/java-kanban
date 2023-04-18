@@ -1,4 +1,3 @@
-
 import taskmanager.Managers;
 import taskmanager.TaskManager;
 import enums.TaskStatus;
@@ -10,7 +9,7 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        TaskManager taskManager = Managers.getInMemoryTaskManager(Managers.getDefaultHistory());
+        TaskManager taskManager = Managers.getInMemoryTaskManager();
 
         System.out.println("*** Test History ***");
         System.out.println("--- Create ---");

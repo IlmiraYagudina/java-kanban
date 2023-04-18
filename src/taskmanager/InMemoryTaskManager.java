@@ -14,6 +14,7 @@ public class InMemoryTaskManager implements TaskManager {
     private final Map<Integer, Subtask> subtasks = new HashMap<>();
     private final Map<Integer, Epic> epics = new HashMap<>();
     private final HistoryManager historyManager = Managers.getDefaultHistory();
+
     @Override
     public int createTask(Task task) {
         int newTaskId = generateId();
@@ -129,7 +130,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public List<Object> getAllEpics() {
+    public List<Epic> getAllEpics() {
         if (epics.size() == 0) {
             System.out.println("Epic list is empty");
             return Collections.emptyList();
@@ -138,7 +139,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public List<Object> getAllSubtasks() {
+    public List<Subtask> getAllSubtasks() {
         if (subtasks.size() == 0) {
             System.out.println("Subtasks list is empty");
             return Collections.emptyList();
