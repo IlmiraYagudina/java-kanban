@@ -3,6 +3,7 @@ import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface TaskManager {
@@ -38,7 +39,7 @@ public interface TaskManager {
 
     List<Subtask> getAllSubtasks(); //посмотреть все подзаписи
 
-    List<Object> getAllSubtasksByEpicId(int id); //посмотреть все записи в эпике
+    List<ArrayList<Subtask>> getAllSubtasksByEpicId(int id); //посмотреть все записи в эпике
 
     void updateTask(Task task); //обновить задачи
 
