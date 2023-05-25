@@ -39,5 +39,12 @@ public class Main {
         System.out.println("--- Get History ---");
         List<Task> history = taskManager.getHistory();
         System.out.println(history);
+
+        System.out.println("--- Remove from history ---");
+        taskManager.remove(1);
+        taskManager.deleteEpicById(3);
+
+        List<Task> historyAfterRemove = taskManager.getHistory();
+        System.out.println(historyAfterRemove);
     }
 }

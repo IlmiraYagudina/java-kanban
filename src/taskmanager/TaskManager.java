@@ -52,4 +52,6 @@ public interface TaskManager {
     void printEpics(); //напечатать эпики
 
     void printSubtasks(); //напечатать подзадачи
+
+    void remove(int i);
 }
