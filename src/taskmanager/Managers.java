@@ -5,10 +5,13 @@ import history.InMemoryHistoryManager;
 
 public class Managers {
     public static TaskManager getInMemoryTaskManager() {
-        return new InMemoryTaskManager();
+        HistoryManager historyManager = null;
+        return new InMemoryTaskManager(historyManager);
     }
 
     public static HistoryManager getDefaultHistory() {
         return new InMemoryHistoryManager();
     }
+
+
 }

@@ -81,6 +81,11 @@ public class InMemoryHistoryManager implements HistoryManager {
         list.linkLast(task);
     }
 
+    @Override
+    public void remove(int id) {
+        list.removeNode(list.getNode(id));
+    }
+
     // Получение истории просмотров
     @Override
     public List<Task> getHistory() {
