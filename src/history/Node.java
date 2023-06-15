@@ -2,7 +2,7 @@ package history;
 
 import tasks.Task;
 
-class Node {
+public class Node {
     private Task task;
     private Node prev;
     private Node next;

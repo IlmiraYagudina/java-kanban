@@ -11,5 +11,7 @@ public interface HistoryManager {
 
     void remove(int id); //удалить по айди
 
-    List<Task> getHistory(); //получить истории задач (10 пуктов)
+    List<Task> getHistory(); //получить истории задач (10 пунктов)
+
+    void deleteSubtaskById(int id);
 }

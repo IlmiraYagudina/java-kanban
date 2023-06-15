@@ -1,73 +1,78 @@
 package taskmanager;
 
+import com.sun.tools.javac.Main;
 import type.TaskType;
+import history.*;
 import enums.TaskStatus;
 import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;
-import history.HistoryManager;
-
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
-public  class FileBackedTasksManager extends InMemoryTaskManager {
-    private File file;
+public class FileBackedTasksManager extends InMemoryTaskManager {
+    private static File file;
     private static final String HEADER_CSV_FILE = "id,type,name,status,description,epic\n";
 
-    public FileBackedTasksManager(HistoryManager historyManager) {
-        super(historyManager);
-    }
+    public FileBackedTasksManager(File file) {
 
-    public FileBackedTasksManager(HistoryManager historyManager, File file) {
-        super(historyManager);
         this.file = file;
     }
 
-    public void loadFromFile() throws RuntimeException {
-        try (var bufferedReader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
-            String line = bufferedReader.readLine();
-            while (bufferedReader.ready()) {
-                line = bufferedReader.readLine();
-                if (line.equals("")) {
-                    break;
-                }
+    static void main(String[] args) throws Exception {
+        loadFromFile(new File("data.csv"));
+        Main.main(args);
+    }
+    public static FileBackedTasksManager loadFromFile(File file) {
+        String[] content;
+        Map<Long, Task> taskMap = new HashMap<>();
 
-                Task task = fromString(line);
-
-                if (task instanceof Epic epic) {
-                    addEpic(epic);
-                } else if (task instanceof Subtask subtask) {
-                    addSubtask(subtask);
-                } else {
-                    addTask(task);
-                }
-            }
-
-            String lineWithHistory = bufferedReader.readLine();
-            for (int id : historyFromString(lineWithHistory)) {
-                addToHistory(id);
-            }
-        } catch (IOException e) {
-
-                throw new RuntimeException("Не удалось найти файл для записи данных"]
-            );
-
+        try {
+            content = Files.readString(file.toPath(), StandardCharsets.UTF_8).split("\n");
+        } catch (IOException io) {
+            throw new ManagerSaveException("Нет файлов для чтения");
         }
+            FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(file);
+            for (int i = 1; i < content.length; i++) {
+                if (content[i].isEmpty()) {
+                    int j = ++i;
+                    List<Integer> historyFromString = historyFromString(content[j]);
+                    for (Integer id : historyFromString) {
+                        fileBackedTasksManager.saveToHistory(taskMap.get(id));
+                    }
+                    return fileBackedTasksManager;
+                }
+
+                Task task = fromString(content[i]);
+                taskMap.put((long) task.getId(), task);
+                if (task instanceof Epic) {
+                    fileBackedTasksManager.addEpic((Epic) task);
+                } else if (task instanceof Subtask) {
+                        fileBackedTasksManager.addSubtask((Subtask) task);
+                } else {
+                        fileBackedTasksManager.addTask(task);
+                }
+            }
+        return fileBackedTasksManager;
     }
 
-    public void save() {
+    protected  void saveToHistory(Task task) {
+        HistoryManager historyManager = null;
+        historyManager.add(task);
+    }
+
+    public String[] save() {
         try {
             if (Files.exists(file.toPath())) {
                 Files.delete(file.toPath());
             }
             Files.createFile(file.toPath());
         } catch (IOException e) {
-                throw new RuntimeException("Не удалось найти файл для записи данных");
+            throw new ManagerSaveException("Не удалось найти файл для записи данных");
         }
 
         try (FileWriter writer = new FileWriter(file, StandardCharsets.UTF_8)) {
@@ -88,10 +93,10 @@ public  class FileBackedTasksManager extends InMemoryTaskManager {
             writer.write("\n");
             writer.write(historyToString(getHistoryManager()));
         } catch (IOException e) {
-            System.out.println("Не удалось сохранить в файл"+ e);
+            throw new ManagerSaveException("Не удалось сохранить в файл", e);
         }
+        return new String[0];
     }
-
 
 
     @Override
@@ -115,16 +120,16 @@ public  class FileBackedTasksManager extends InMemoryTaskManager {
         return newSubtaskId;
     }
 
-    public int addTask(Task task) {
-        return super.createTask(task);
+    public void addTask(Task task) {
+        super.createTask(task);
     }
 
-    public int addEpic(Epic epic) {
-        return super.createEpic(epic);
+    public void addEpic(Epic epic) {
+        super.createEpic(epic);
     }
 
-    public int addSubtask(Subtask subtask) {
-        return super.createSubtask(subtask);
+    public void addSubtask(Subtask subtask) {
+        super.createSubtask(subtask);
     }
 
     @Override
@@ -196,6 +201,7 @@ public  class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
+
     // Метод для сохранения истории в CSV
     static String historyToString(HistoryManager manager) {
         List<Task> history = manager.getHistory();
@@ -255,7 +261,7 @@ public  class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     // Метод создания задачи из строки
-    private Task fromString(String value) {
+    private static Task fromString(String value) {
         String[] params = value.split(",");
         if (params[1].equals("EPIC")) {
             Epic epic = new Epic(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()));
@@ -273,4 +279,6 @@ public  class FileBackedTasksManager extends InMemoryTaskManager {
             return task;
         }
     }
+
+
 }

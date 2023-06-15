@@ -91,5 +91,11 @@ public class InMemoryHistoryManager implements HistoryManager {
     public List<Task> getHistory() {
         return list.getTasks();
     }
+
+    //TODO
+    @Override
+    public void deleteSubtaskById(int id) {
+        list.removeNode(list.getNode(id));
+    }
 }
 
