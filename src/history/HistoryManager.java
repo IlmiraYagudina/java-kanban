@@ -1,10 +1,12 @@
 package history;
 
+import taskmanager.ManagerSaveException;
 import tasks.Task;
 import java.util.List;
 
 public interface HistoryManager {
-    static void getHistory(int id) {
+    static void getHistory(int id)  {
+
     }
 
     void add(Task task); //добавление задачи

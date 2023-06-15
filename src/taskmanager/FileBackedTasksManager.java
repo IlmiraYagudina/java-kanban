@@ -7,6 +7,7 @@ import enums.TaskStatus;
 import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;
+import history.HistoryManager;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -30,6 +31,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public static FileBackedTasksManager loadFromFile(File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
+        HistoryManager historyManager = new InMemoryHistoryManager();
 
         try {
             content = Files.readString(file.toPath(), StandardCharsets.UTF_8).split("\n");
@@ -61,11 +63,11 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     protected  void saveToHistory(Task task) {
-        HistoryManager historyManager = null;
+        HistoryManager historyManager = new InMemoryHistoryManager();
         historyManager.add(task);
     }
 
-    public String[] save() {
+    public void save() {
         try {
             if (Files.exists(file.toPath())) {
                 Files.delete(file.toPath());
@@ -94,8 +96,8 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             writer.write(historyToString(getHistoryManager()));
         } catch (IOException e) {
             throw new ManagerSaveException("Не удалось сохранить в файл", e);
+
         }
-        return new String[0];
     }
 
 
@@ -170,23 +172,39 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     @Override
     public Task getTaskById(int id) {
+        try{
         Task task = super.getTaskById(id);
         save();
         return task;
+        }
+        catch (NullPointerException exp) { // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
+        }
+        return null;
     }
 
     @Override
     public Epic getEpicById(int id) {
-        Epic epic = super.getEpicById(id);
-        save();
-        return epic;
+        try {
+            Epic epic = super.getEpicById(id);
+            save();
+            return epic;
+        } catch (NullPointerException exp) { // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
+        }
+        return null;
     }
 
     @Override
     public Subtask getSubtaskById(int id) {
-        Subtask subtask = super.getSubtaskById(id);
-        save();
-        return subtask;
+        try {
+            Subtask subtask = super.getSubtaskById(id);
+            save();
+            return subtask;
+        } catch (NullPointerException exp) { // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
+        }
+        return null;
     }
 
     @Override

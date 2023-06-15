@@ -5,10 +5,10 @@ import tasks.Task;
 
 import java.util.List;
 
-public interface TaskManager {
+public interface TaskManager  {
     List<Task> getHistory(); //просмотреть истории задач (последних 10)
 
-    int createTask(Task task) throws ManagerSaveException; //добавить новую задачу
+    int createTask(Task task); //добавить новую задачу
 
     int createEpic(Epic epic); //добавить новый эпик
 
