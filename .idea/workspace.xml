@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all" />
+    <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all">
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +131,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>108</line>
+          <line>105</line>
           <properties class="taskmanager.FileBackedTasksManager" method="createTask">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -143,15 +146,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>227</line>
-          <properties class="taskmanager.FileBackedTasksManager" method="historyToString">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/history/HistoryManager.java</url>
@@ -182,21 +176,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>32</line>
+          <line>29</line>
           <properties class="taskmanager.FileBackedTasksManager" method="loadFromFile">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="36" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>29</line>
-          <properties class="taskmanager.FileBackedTasksManager" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/taskmanager/TaskManager.java</url>
@@ -224,12 +209,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>228</line>
+          <line>223</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>70</line>
+          <line>67</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -239,12 +224,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>69</line>
+          <line>66</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>229</line>
+          <line>225</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -274,12 +259,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>39</line>
+          <line>36</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>32</line>
+          <line>30</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

@@ -173,13 +173,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     @Override
     public Task getTaskById(int id) {
-        try{
+        try {
             Task task = super.getTaskById(id);
             saveToHistory(task);
             return task;
-        }
-        catch (NullPointerException exp) { // ловим исключение NullPointerException
-             System.out.println("Ошибка: передан неинициализированный объект!");
+        } catch (NullPointerException exp) { // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
         }
         return null;
     }
@@ -298,6 +297,4 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             return task;
         }
     }
-
-
 }
