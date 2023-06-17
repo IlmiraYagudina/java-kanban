@@ -27,9 +27,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    static void main(String[] args) throws Exception {
-        loadFromFile(new File("data.csv"));
-    }
     public static FileBackedTasksManager loadFromFile(File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
