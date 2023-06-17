@@ -14,17 +14,17 @@ public interface TaskManager  {
 
     int createSubtask(Subtask subtask); //добавить новую задачу в эпик
 
-    void deleteTaskById(int id); //удалить задачу по айди
+    void deleteTaskById(int id) throws ManagerSaveException; //удалить задачу по айди
 
-    void deleteEpicById(int id); //удалить эпик по айди
+    void deleteEpicById(int id) throws ManagerSaveException; //удалить эпик по айди
 
-    void deleteSubtaskById(int id); //удалить задачу по айди в эпике
+    void deleteSubtaskById(int id) throws ManagerSaveException; //удалить задачу по айди в эпике
 
-    void deleteAllTasks(); //удалить все задачи (односложные)
+    void deleteAllTasks() throws ManagerSaveException; //удалить все задачи (односложные)
 
-    void deleteAllEpics(); //удалить все эпики и в них подзадачи
+    void deleteAllEpics() throws ManagerSaveException; //удалить все эпики и в них подзадачи
 
-    void deleteAllSubtasks(); //удалить все подзадачи в эпике
+    void deleteAllSubtasks() throws ManagerSaveException; //удалить все подзадачи в эпике
 
     Task getTaskById(int id); //просмотреть задачу по айди
 
@@ -56,5 +56,5 @@ public interface TaskManager  {
 
     void printSubtasks(); //напечатать подзадачи
 
-    void remove(int i);
+    void remove(int id);
 }

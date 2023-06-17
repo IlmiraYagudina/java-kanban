@@ -22,9 +22,7 @@ public class InMemoryTaskManager implements TaskManager {
         this.historyManager = historyManager;
     }
 
-    public InMemoryTaskManager() {
 
-    }
 
     public int generateId() {
         return ++id;
@@ -61,12 +59,12 @@ public class InMemoryTaskManager implements TaskManager {
             return -1;
         }
     }
-
+//TODO
     @Override
     public void deleteTaskById(int id) {
         if (tasks.containsKey(id)) {
-            tasks.remove(id);
             historyManager.remove(id);
+            tasks.remove(id);
         } else {
             System.out.println("Task not found");
         }
