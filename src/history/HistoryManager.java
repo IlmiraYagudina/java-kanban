@@ -11,7 +11,5 @@ public interface HistoryManager {
 
     List<Task> getHistory(); //получить истории задач (10 пунктов)
 
-    //TODO
-    void deleteSubtaskById(int id);
 }
 

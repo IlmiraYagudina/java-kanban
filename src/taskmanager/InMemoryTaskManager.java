@@ -10,19 +10,12 @@ import java.util.*;
 
 
 public class InMemoryTaskManager implements TaskManager {
-    private int id = 0;
+    protected int id = 0;
 
     protected final Map<Integer, Task> tasks = new HashMap<>();
-    private final Map<Integer, Subtask> subtasks = new HashMap<>();
-    private final Map<Integer, Epic> epics = new HashMap<>();
-    private HistoryManager historyManager;
-
-
-    public InMemoryTaskManager(HistoryManager historyManager) {
-        this.historyManager = historyManager;
-    }
-
-
+    protected final Map<Integer, Subtask> subtasks = new HashMap<>();
+    protected final Map<Integer, Epic> epics = new HashMap<>();
+    protected HistoryManager historyManager = Managers.getDefaultHistory();
 
     public int generateId() {
         return ++id;
@@ -85,8 +78,8 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    @Override
     public void deleteSubtaskById(int id) {
+        this.id = id;
         Subtask subtask = subtasks.get(id);
         if (subtask != null) {
             Epic epic = epics.get(subtask.getEpicId());

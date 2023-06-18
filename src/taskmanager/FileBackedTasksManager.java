@@ -18,16 +18,12 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     private static File file;
     private static final String HEADER_CSV_FILE = "id,type,name,status,description,epic\n";
 
-    public FileBackedTasksManager(HistoryManager historyManager) {
-        super(historyManager);
+
+    public FileBackedTasksManager(File file) {
+        FileBackedTasksManager.file = file;
     }
 
-    public FileBackedTasksManager(HistoryManager historyManager, File file) {
-        super(historyManager);
-        this.file = file;
-    }
-
-    public static FileBackedTasksManager loadFromFile(HistoryManager historyManager, File file) {
+    public static void loadFromFile(File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
 
@@ -40,15 +36,13 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
         //TODO
 
-        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(historyManager, file);
+        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(file);
         for (int i = 1; i < content.length; i++) {
             if (content[i].isEmpty()) {
                 int j = ++i;
                 List<Integer> historyFromString = historyFromString(content[j]);
-                for (Integer id : historyFromString) {
-                    fileBackedTasksManager.saveToHistory(taskMap.get(id));
-                }
-                return fileBackedTasksManager;
+                for (Integer id : historyFromString) fileBackedTasksManager.saveToHistory(taskMap.get(id));
+                return;
             }
 
             Task task = fromString(content[i]);
@@ -61,7 +55,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 fileBackedTasksManager.addTask(task);
             }
         }
-        return fileBackedTasksManager;
     }
 
     protected void saveToHistory(Task task) {

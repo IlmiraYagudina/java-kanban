@@ -15,10 +15,10 @@ public class Main {
 
     public static void main(String[] args) throws ManagerSaveException {
 
-        TaskManager taskManager = Managers.getInMemoryTaskManager(Managers.getDefaultHistory());
+        TaskManager taskManager = Managers.getInMemoryTaskManager();
 
-        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(Managers.getDefaultHistory(), new File("data.csv"));
-        fileBackedTasksManager.loadFromFile(Managers.getDefaultHistory(), new File("data.csv"));
+        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(new File("data.csv"));
+        fileBackedTasksManager.loadFromFile(new File("data.csv"));
 
 
         Task firstTask = new Task("Сделать дизайн-проект", "Ремонт квартиры", TaskStatus.NEW);
