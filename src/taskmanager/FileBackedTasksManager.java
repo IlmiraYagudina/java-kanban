@@ -27,17 +27,18 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    public static FileBackedTasksManager loadFromFile(File file) {
+    public static FileBackedTasksManager loadFromFile(HistoryManager historyManager, File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
-        HistoryManager historyManager = new InMemoryHistoryManager();
 
         try {
             content = Files.readString(file.toPath(), StandardCharsets.UTF_8).split("\n");
         } catch (IOException io) {
-            System.out.println(io.getMessage());
-            return null;
+
+            throw new ManagerSaveException(io.getMessage());
         }
+
+        //TODO
 
         FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(historyManager, file);
         for (int i = 1; i < content.length; i++) {

@@ -18,7 +18,7 @@ public class Main {
         TaskManager taskManager = Managers.getInMemoryTaskManager(Managers.getDefaultHistory());
 
         FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(Managers.getDefaultHistory(), new File("data.csv"));
-        fileBackedTasksManager.loadFromFile(new File("data.csv"));
+        fileBackedTasksManager.loadFromFile(Managers.getDefaultHistory(), new File("data.csv"));
 
 
         Task firstTask = new Task("Сделать дизайн-проект", "Ремонт квартиры", TaskStatus.NEW);

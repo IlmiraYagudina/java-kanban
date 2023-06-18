@@ -14,3 +14,4 @@ public interface HistoryManager {
     //TODO
     void deleteSubtaskById(int id);
 }
+
