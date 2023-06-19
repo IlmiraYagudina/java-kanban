@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all" />
+    <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all">
+      <change beforePath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -128,7 +130,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>99</line>
+          <line>98</line>
           <properties class="taskmanager.FileBackedTasksManager" method="createTask">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -197,18 +199,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>61</line>
+          <line>60</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/history/HistoryManager.java</url>
           <line>6</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java</url>
-          <line>60</line>
-          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/taskmanager/InMemoryTaskManager.java</url>

@@ -58,7 +58,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     protected void saveToHistory(Task task) {
-        HistoryManager historyManager = new InMemoryHistoryManager();
         historyManager.add(task);
     }
 
