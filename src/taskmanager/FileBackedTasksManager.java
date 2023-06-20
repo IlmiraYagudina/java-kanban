@@ -23,7 +23,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
 
     public FileBackedTasksManager(File file) {
-        FileBackedTasksManager.file = file;
+        this.file = file;
     }
 
     public static void loadFromFile(File file) {
@@ -36,8 +36,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
             throw new ManagerSaveException(io.getMessage());
         }
-
-        //TODO
 
         FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(file);
         for (int i = 1; i < content.length; i++) {
@@ -99,24 +97,24 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
 
     @Override
-    public int createTask(Task task) {
-        int newTaskId = super.createTask(task);
+    public Task createTask(Task task) {
+        super.createTask(task);
         saveToHistory(task);
-        return newTaskId;
+        return task;
     }
 
     @Override
-    public int createEpic(Epic epic) {
-        int newEpicId = super.createEpic(epic);
+    public Epic createEpic(Epic epic) {
+        super.createEpic(epic);
         saveToHistory(epic);
-        return newEpicId;
+        return epic;
     }
 
     @Override
-    public int createSubtask(Subtask subtask) {
-        int newSubtaskId = super.createSubtask(subtask);
+    public Subtask createSubtask(Subtask subtask) {
+        super.createSubtask(subtask);
         saveToHistory(subtask);
-        return newSubtaskId;
+        return subtask;
     }
 
     public void addTask(Task task) {

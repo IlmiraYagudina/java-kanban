@@ -62,19 +62,19 @@ abstract class TaskManagerTest <T extends TaskManager> {
 
     @Test
     void shouldReturnNullWhenCreateTaskNull() {
-        int task = manager.createTask(null);
+        Task task = manager.createTask(null);
         assertNull(task);
     }
 
     @Test
     void shouldReturnNullWhenCreateEpicNull() {
-        int epic = manager.createEpic(null);
+        Epic epic = manager.createEpic(null);
         assertNull(epic);
     }
 
     @Test
     void shouldReturnNullWhenCreateSubtaskNull() {
-        int subtask = manager.createSubtask(null);
+        Subtask subtask = manager.createSubtask(null);
         assertNull(subtask);
     }
 

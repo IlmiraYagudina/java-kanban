@@ -22,7 +22,7 @@ class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
     File file = new File(String.valueOf(path));
     @BeforeEach
     public void beforeEach() {
-        manager = new FileBackedTasksManager(file);
+        manager = new FileBackedTasksManager(new File("data.csv"));
     }
 
     @AfterEach
