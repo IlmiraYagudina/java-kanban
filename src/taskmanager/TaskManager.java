@@ -38,8 +38,6 @@ public interface TaskManager  {
 
     List<Subtask> getAllSubtasks(); //посмотреть все подзаписи
 
-    List<Subtask> getAllSubtasksByEpicId();
-
     List<Subtask> getAllSubtasksByEpicId(int id); //посмотреть все записи в эпике
 
     void updateTask(Task task); //обновить задачи
@@ -57,4 +55,6 @@ public interface TaskManager  {
     void printSubtasks(); //напечатать подзадачи
 
     void remove(int id);
+
+    void deleteAllSubtasksByEpic(Epic epic);
 }

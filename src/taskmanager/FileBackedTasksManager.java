@@ -1,7 +1,6 @@
 package taskmanager;
 
 import type.TaskType;
-import history.*;
 import enums.TaskStatus;
 import tasks.Epic;
 import tasks.Subtask;
@@ -11,7 +10,11 @@ import history.HistoryManager;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.util.*;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
@@ -274,19 +277,27 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     // Метод создания задачи из строки
     private static Task fromString(String value) {
         String[] params = value.split(",");
-        if (params[1].equals("EPIC")) {
-            Epic epic = new Epic(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()));
-            epic.setId(Integer.parseInt(params[0]));
-            epic.setStatus(TaskStatus.valueOf(params[3].toUpperCase()));
+        int id = Integer.parseInt(params[0]);
+        String type = params[1];
+        String name = params[2];
+        TaskStatus status = TaskStatus.valueOf(params[3].toUpperCase());
+        String description = params[4];
+        Instant startTime = Instant.parse(params[5]);
+        long duration = Long.parseLong(params[6]);
+        Integer epicId = type.equals("SUBTASK") ? Integer.parseInt(params[7]) : null;
+
+        if (type.equals("EPIC")) {
+            Epic epic = new Epic(description, name, status, startTime, duration);
+            epic.setId(id);
+            epic.setStatus(status);
             return epic;
-        } else if (params[1].equals("SUBTASK")) {
-            Subtask subtask = new Subtask(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()),
-                    Integer.parseInt(params[5]));
-            subtask.setId(Integer.parseInt(params[0]));
+        } else if (type.equals("SUBTASK")) {
+            Subtask subtask = new Subtask(description, name, status, epicId, startTime, duration);
+            subtask.setId(id);
             return subtask;
         } else {
-            Task task = new Task(params[4], params[2], TaskStatus.valueOf(params[3].toUpperCase()));
-            task.setId(Integer.parseInt(params[0]));
+            Task task = new Task(description, name, status, startTime, duration);
+            task.setId(id);
             return task;
         }
     }

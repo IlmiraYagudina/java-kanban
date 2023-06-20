@@ -9,6 +9,9 @@ public enum TaskStatus {
         this.translation = translation;
     }
 
+    public String getTranslation() {
+        return translation;
+    }
     public String toString() {
         return translation;
     }

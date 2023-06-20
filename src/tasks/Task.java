@@ -1,6 +1,8 @@
 package tasks;
 
 import enums.TaskStatus;
+
+import java.time.Instant;
 import java.util.Objects;
 
 public class Task {
@@ -8,11 +10,22 @@ public class Task {
     private int id;
     private String name;
     private TaskStatus status;
+    private Instant startTime;
+    private long duration;
 
-    public Task(String description, String name, TaskStatus status) {
+    public Task(String description, String name, TaskStatus status, Instant startTime, long duration) {
         this.description = description;
         this.name = name;
         this.status = status;
+    }
+
+    public Task(String description, int id, String name, TaskStatus status, Instant startTime, long duration) {
+        this.description = description;
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.startTime = startTime;
+        this.duration = duration;
     }
 
     public String getDescription() {
@@ -47,6 +60,27 @@ public class Task {
         this.status = status;
     }
 
+    public Instant getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Instant startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
+
+    public Instant getEndTime() {
+        long SECONDS_IN_MINUTE = 60L;
+        return startTime.plusSeconds(duration * SECONDS_IN_MINUTE);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,7 +101,10 @@ public class Task {
                 "description='" + description + '\'' +
                 ", id=" + id +
                 ", name='" + name + '\'' +
-                ", status=" + status +
+                ", status=" + status + '\'' +
+                ", startTime='" + startTime.toEpochMilli() + '\'' +
+                ", endTime='" + getEndTime().toEpochMilli() + '\'' +
+                ", duration='" + duration +
                 '}';
     }
 }

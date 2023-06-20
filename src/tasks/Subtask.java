@@ -1,13 +1,20 @@
 package tasks;
 
 import enums.TaskStatus;
+
+import java.time.Instant;
 import java.util.Objects;
 
 public class Subtask extends Task {
     private final int epicId;
 
-    public Subtask(String description, String name, TaskStatus status, int epicId) {
-        super(description, name, status);
+    public Subtask(String description, String name, TaskStatus status, int epicId, Instant startTime, long duration) {
+        super(description, name, status, startTime, duration);
+        this.epicId = epicId;
+    }
+
+    public Subtask(String description, int id, String name, TaskStatus status, Instant startTime, long duration, int epicId) {
+        super(description, id, name, status, startTime, duration);
         this.epicId = epicId;
     }
 
@@ -36,7 +43,10 @@ public class Subtask extends Task {
                 ", description='" + getDescription() + '\'' +
                 ", id=" + getId() +
                 ", name='" + getName() + '\'' +
-                ", status=" + getStatus() +
+                ", status=" + getStatus() + '\'' +
+                ", startTime='" + getStartTime().toEpochMilli() + '\'' +
+                ", endTime='" + getEndTime().toEpochMilli() + '\'' +
+                ", duration='" + getDuration() +
                 '}';
     }
 }
