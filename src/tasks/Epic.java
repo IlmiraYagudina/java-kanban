@@ -9,12 +9,12 @@ public class Epic extends Task {
     private final List<Integer> subtaskIds = new ArrayList<>();
     private Instant endTime;
 
-    public Epic(String description, String name, TaskStatus status, Instant startTime, long duration) {
-        super(description, name, status, startTime, duration);
+    public Epic(String description, String name, TaskStatus status) {
+        super(description, name, status);
     }
 
-    public Epic(String description, int id, String name, TaskStatus status, Instant startTime, long duration, Instant endTime) {
-        super(description, id, name, status, startTime, duration);
+    public Epic(String description, String name, TaskStatus status, Instant startTime, long duration) {
+        super(description, name, status, startTime, duration);
         this.endTime = super.getEndTime();
     }
 
@@ -45,6 +45,7 @@ public class Epic extends Task {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), subtaskIds);
     }
 

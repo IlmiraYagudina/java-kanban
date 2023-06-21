@@ -1,7 +1,6 @@
-package taskmanager;
-
 import enums.TaskStatus;
 import org.junit.Test;
+import taskmanager.TaskManager;
 import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;

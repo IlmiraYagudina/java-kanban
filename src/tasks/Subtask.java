@@ -8,15 +8,20 @@ import java.util.Objects;
 public class Subtask extends Task {
     private final int epicId;
 
-    public Subtask(String description, String name, TaskStatus status, int epicId, Instant startTime, long duration) {
-        super(description, name, status, startTime, duration);
+    public Subtask(
+            String description, String name, TaskStatus status, int epicId, Instant startTime, long duration) {
+        super(description,
+                name,
+                status,
+                startTime,
+                duration);
         this.epicId = epicId;
     }
 
-    public Subtask(String description, int id, String name, TaskStatus status, Instant startTime, long duration, int epicId) {
-        super(description, id, name, status, startTime, duration);
-        this.epicId = epicId;
-    }
+//    public Subtask(String description, String name, TaskStatus status, int epicId) {
+//        super(description, name, status);
+//        this.epicId = epicId;
+//    }
 
     public int getEpicId() {
         return epicId;
@@ -33,6 +38,7 @@ public class Subtask extends Task {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), epicId);
     }
 

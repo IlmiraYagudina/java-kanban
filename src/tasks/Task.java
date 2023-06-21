@@ -19,7 +19,7 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String description, int id, String name, TaskStatus status, Instant startTime, long duration) {
+    public Task(String description, String name, TaskStatus status) {
         this.description = description;
         this.id = id;
         this.name = name;
@@ -86,13 +86,14 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return id == task.id && Objects.equals(description, task.description) &&
-                Objects.equals(name, task.name) && status == task.status;
+        return id == task.id && Objects.equals(description, task.description) && Objects.equals(name, task.name) &&
+                status == task.status && Objects.equals(startTime, task.startTime) &&
+                Objects.equals(duration, task.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, id, name, status);
+        return Objects.hash(description, id, name, status, startTime, duration);
     }
 
     @Override

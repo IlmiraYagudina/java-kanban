@@ -58,7 +58,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         }
     }
 
-    protected void saveToHistory(Task task) {
+    public void saveToHistory(Task task) {
         historyManager.add(task);
     }
 
@@ -167,38 +167,28 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     @Override
     public Task getTaskById(int id) {
-        try {
-            Task task = super.getTaskById(id);
-            saveToHistory(task);
-            return task;
-        } catch (NullPointerException exp) { // ловим исключение NullPointerException
-            System.out.println("Ошибка: передан неинициализированный объект!");
-        }
-        return null;
+        Task task = super.getTaskById(id);
+        if (task == null) return null;
+        saveToHistory(task);
+        return task;
+
     }
 
     @Override
     public Epic getEpicById(int id) {
-        try {
-            Epic epic = super.getEpicById(id);
-            saveToHistory(epic);
-            return epic;
-        } catch (NullPointerException exp) { // ловим исключение NullPointerException
-            System.out.println("Ошибка: передан неинициализированный объект!");
-        }
-        return null;
+        Epic epic = super.getEpicById(id);
+        if (epic == null) return null;
+        saveToHistory(epic);
+        return epic;
     }
 
     @Override
     public Subtask getSubtaskById(int id) {
-        try {
-            Subtask subtask = super.getSubtaskById(id);
-            saveToHistory(subtask);
-            return subtask;
-        } catch (NullPointerException exp) { // ловим исключение NullPointerException
-            System.out.println("Ошибка: передан неинициализированный объект!");
-        }
-        return null;
+        Subtask subtask = super.getSubtaskById(id);
+        if (subtask == null) return null;
+        saveToHistory(subtask);
+        return subtask;
+
     }
 
     @Override

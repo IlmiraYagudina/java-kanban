@@ -1,5 +1,5 @@
-package history;
-
+import history.HistoryManager;
+import history.InMemoryHistoryManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import enums.TaskStatus;
