@@ -5,17 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adapters/InstantAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/adapters/LocalDateTimeAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/exception/HandlerRequestException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/HTTPTaskManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/HttpTaskServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/KVServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/http/KVTaskClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/httpTest/HTTPTaskManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/httpTest/HttpTaskServerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/history/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskmanager/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/taskmanager/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/TaskManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskmanager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskmanager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/Managers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/FileBackedTasksManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/InMemoryHistoryManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/InMemoryTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/InMemoryTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -60,22 +68,30 @@
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "create.test.in.the.same.root": "true",
-    "last_opened_file_path": "C:/Users/ilmira/PRACTIKUM/java-kanban",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "last_opened_file_path": "C:/Users/ilmira/PRACTIKUM/java-kanban/lib",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.1344086",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="taskmanager" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ilmira\PRACTIKUM\java-kanban\lib" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ilmira\PRACTIKUM\java-kanban\lib" />
+      <recent name="C:\Users\ilmira\PRACTIKUM\java-kanban\src" />
       <recent name="C:\Users\ilmira\PRACTIKUM\java-kanban" />
       <recent name="C:\Users\ilmira\PRACTIKUM\java-kanban\.idea" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="taskmanager" />
@@ -83,7 +99,14 @@
       <recent name="tasks" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.FileBackedTasksManagerTest.shouldSaveAndLoadEmptyTasksEpicsSubtasks">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="java-kanban" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FileBackedTasksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
       <extension name="coverage">
@@ -92,33 +115,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
+      <option name="PACKAGE_NAME" value="managertest" />
+      <option name="MAIN_CLASS_NAME" value="managerTest.FileBackedTasksManagerTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FileBackedTasksManagerTest.shouldReturnHistoryWithTasks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java-kanban" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
-      <option name="METHOD_NAME" value="shouldReturnHistoryWithTasks" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="FileBackedTasksManagerTest.shouldSaveAndLoadEmptyTasksEpicsSubtasks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java-kanban" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="FileBackedTasksManagerTest" />
+      <option name="PACKAGE_NAME" value="managertest" />
+      <option name="MAIN_CLASS_NAME" value="managerTest.FileBackedTasksManagerTest" />
       <option name="METHOD_NAME" value="shouldSaveAndLoadEmptyTasksEpicsSubtasks" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -133,8 +140,8 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="InMemoryTaskManagerTest" />
+      <option name="PACKAGE_NAME" value="managertest" />
+      <option name="MAIN_CLASS_NAME" value="managerTest.InMemoryTaskManagerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,8 +155,8 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TaskManagerTest" />
+      <option name="PACKAGE_NAME" value="managertest" />
+      <option name="MAIN_CLASS_NAME" value="managerTest.TaskManagerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -157,11 +164,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.FileBackedTasksManagerTest.shouldSaveAndLoadEmptyTasksEpicsSubtasks" />
         <item itemvalue="JUnit.FileBackedTasksManagerTest" />
         <item itemvalue="JUnit.InMemoryTaskManagerTest" />
         <item itemvalue="JUnit.TaskManagerTest" />
-        <item itemvalue="JUnit.FileBackedTasksManagerTest.shouldReturnHistoryWithTasks" />
       </list>
     </recent_temporary>
   </component>
@@ -230,9 +237,9 @@
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/test/TaskManagerTest.java</url>
+          <url>file://$PROJECT_DIR$/test/managerTest/TaskManagerTest.java</url>
           <line>155</line>
-          <properties class="taskmanager.TaskManagerTest" method="shouldNotUpdateSubtaskIfNull">
+          <properties class="managerTest.TaskManagerTest" method="shouldNotUpdateSubtaskIfNull">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -250,21 +257,21 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>19</line>
+          <line>67</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/InMemoryTaskManagerTest.java</url>
+          <url>file://$PROJECT_DIR$/test/managerTest/InMemoryTaskManagerTest.java</url>
           <line>7</line>
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/InMemoryHistoryManagerTest.java</url>
+          <url>file://$PROJECT_DIR$/test/managerTest/InMemoryHistoryManagerTest.java</url>
           <line>13</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/test/FileBackedTasksManagerTest.java</url>
+          <url>file://$PROJECT_DIR$/test/managerTest/FileBackedTasksManagerTest.java</url>
           <line>56</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>

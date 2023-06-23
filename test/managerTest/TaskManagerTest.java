@@ -1,3 +1,5 @@
+package managerTest;
+
 import enums.TaskStatus;
 import org.junit.Test;
 import taskmanager.TaskManager;
