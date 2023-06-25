@@ -10,6 +10,7 @@ import history.HistoryManager;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +27,9 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
+    public FileBackedTasksManager() {
+        this.file = Path.of("resources/data.csv").toFile();
+    }
     public static void loadFromFile(File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
@@ -284,7 +288,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             subtask.setId(id);
             return subtask;
         } else {
-            Task task = new Task(description, name, status, startTime, duration);
+            Task task = new Task(description, name, status, Instant.now(), 1);
             task.setId(id);
             return task;
         }

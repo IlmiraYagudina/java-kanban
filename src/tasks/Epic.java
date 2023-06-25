@@ -10,11 +10,11 @@ public class Epic extends Task {
     private Instant endTime;
 
     public Epic(String description, String name, TaskStatus status) {
-        super(description, name, status);
+        super(description, name, status, Instant.now(), 1);
     }
 
     public Epic(String description, String name, TaskStatus status, Instant startTime, long duration) {
-        super(description, name, status, startTime, duration);
+        super(description, name, status, Instant.now(), 1);
         this.endTime = super.getEndTime();
     }
 

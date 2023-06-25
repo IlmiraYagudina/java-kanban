@@ -10,9 +10,6 @@ import java.util.Map;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
-/**
- * Постман: https://www.getpostman.com/collections/a83b61d9e1c81c10575c
- */
 public class KVServer {
     public static final int PORT = 8078;
     private final String apiToken;
@@ -27,8 +24,39 @@ public class KVServer {
         server.createContext("/load", this::load);
     }
 
+    public void start() {
+        System.out.println("Запускаем сервер на порту " + PORT);
+        System.out.println("Открой в браузере http://localhost:" + PORT + "/");
+        System.out.println("API_TOKEN: " + apiToken);
+        server.start();
+    }
+
+    public void stop() {
+        server.stop(0);
+        System.out.println("На " + PORT + " порту сервер остановлен!");
+    }
+
+    protected boolean hasAuth(HttpExchange httpExchange) {
+        String rawQuery = httpExchange.getRequestURI().getRawQuery();
+        return rawQuery != null && (rawQuery.contains("API_TOKEN=" + apiToken) || rawQuery.contains("API_TOKEN=DEBUG"));
+    }
+
+    protected String readText(HttpExchange httpExchange) throws IOException {
+        return new String(httpExchange.getRequestBody().readAllBytes(), UTF_8);
+    }
+
+    protected void sendText(HttpExchange httpExchange, String text) throws IOException {
+        byte[] resp = text.getBytes(UTF_8);
+        httpExchange.getResponseHeaders().add("Content-Type", "application/json");
+        httpExchange.sendResponseHeaders(200, resp.length);
+        httpExchange.getResponseBody().write(resp);
+    }
+
+    private String generateApiToken() {
+        return "" + System.currentTimeMillis();
+    }
+
     private void load(HttpExchange httpExchange) {
-        // TODO Добавьте получение значения по ключу
         try (httpExchange) {
             System.out.println("\n/load");
             if (!hasAuth(httpExchange)) {
@@ -104,35 +132,4 @@ public class KVServer {
         }
     }
 
-    public void start() {
-        System.out.println("Запускаем сервер на порту " + PORT);
-        System.out.println("Открой в браузере http://localhost:" + PORT + "/");
-        System.out.println("API_TOKEN: " + apiToken);
-        server.start();
-    }
-
-    public void stop() {
-        server.stop(0);
-        System.out.println("На " + PORT + " порту сервер остановлен!");
-    }
-
-    private String generateApiToken() {
-        return "" + System.currentTimeMillis();
-    }
-
-    protected boolean hasAuth(HttpExchange httpExchange) {
-        String rawQuery = httpExchange.getRequestURI().getRawQuery();
-        return rawQuery != null && (rawQuery.contains("API_TOKEN=" + apiToken) || rawQuery.contains("API_TOKEN=DEBUG"));
-    }
-
-    protected String readText(HttpExchange httpExchange) throws IOException {
-        return new String(httpExchange.getRequestBody().readAllBytes(), UTF_8);
-    }
-
-    protected void sendText(HttpExchange httpExchange, String text) throws IOException {
-        byte[] resp = text.getBytes(UTF_8);
-        httpExchange.getResponseHeaders().add("Content-Type", "application/json");
-        httpExchange.sendResponseHeaders(200, resp.length);
-        httpExchange.getResponseBody().write(resp);
-    }
 }

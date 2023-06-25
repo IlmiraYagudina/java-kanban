@@ -1,17 +1,18 @@
 package httpTest;
-import http.HTTPTaskManager;
+
+import history.HistoryManager;
+import http.HttpTaskManager;
 import http.KVServer;
-import manager.HistoryManager;
-import manager.Managers;
-import manager.TaskManager;
-import manager.TaskManagerTest;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import status.Status;
+import taskmanager.Managers;
+import taskmanager.TaskManager;
 import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;
+import managerTest.TaskManagerTest;
+import enums.TaskStatus;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -19,7 +20,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
+class HttpTaskManagerTest<T extends TaskManagerTest<HttpTaskManager>> {
     private KVServer server;
     private TaskManager manager;
 
@@ -28,8 +29,7 @@ class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
         try {
             server = new KVServer();
             server.start();
-            HistoryManager historyManager = Managers.getDefaultHistory();
-            manager = Managers.getDefault(historyManager);
+            manager = Managers.getDefault();
         } catch (IOException | InterruptedException e) {
             System.out.println("Ошибка при создании менеджера");
         }
@@ -42,8 +42,8 @@ class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
 
     @Test
     public void shouldLoadTasks() {
-        Task task1 = new Task("description1", "name1", Status.NEW, Instant.now(), 1);
-        Task task2 = new Task("description2", "name2", Status.NEW, Instant.now(), 2);
+        Task task1 = new Task("description1", "name1", TaskStatus.NEW, Instant.now(), 1);
+        Task task2 = new Task("description2", "name2", TaskStatus.NEW, Instant.now(), 2);
         manager.createTask(task1);
         manager.createTask(task2);
         manager.getTaskById(task1.getId());
@@ -54,8 +54,8 @@ class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
 
     @Test
     public void shouldLoadEpics() {
-        Epic epic1 = new Epic("description1", "name1", Status.NEW, Instant.now(), 3);
-        Epic epic2 = new Epic("description2", "name2", Status.NEW, Instant.now(), 4);
+        Epic epic1 = new Epic("description1", "name1", TaskStatus.NEW, Instant.now(), 3);
+        Epic epic2 = new Epic("description2", "name2", TaskStatus.NEW, Instant.now(), 4);
         manager.createEpic(epic1);
         manager.createEpic(epic2);
         manager.getEpicById(epic1.getId());
@@ -66,10 +66,10 @@ class HTTPTaskManagerTest<T extends TaskManagerTest<HTTPTaskManager>> {
 
     @Test
     public void shouldLoadSubtasks() {
-        Epic epic1 = new Epic("description1", "name1", Status.NEW, Instant.now(), 5);
-        Subtask subtask1 = new Subtask("description1", "name1", Status.NEW, epic1.getId()
+        Epic epic1 = new Epic("description1", "name1", TaskStatus.NEW, Instant.now(), 5);
+        Subtask subtask1 = new Subtask("description1", "name1", TaskStatus.NEW, epic1.getId()
                 , Instant.now(), 6);
-        Subtask subtask2 = new Subtask("description2", "name2", Status.NEW, epic1.getId(),
+        Subtask subtask2 = new Subtask("description2", "name2", TaskStatus.NEW, epic1.getId(),
                 Instant.now(), 7);
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);

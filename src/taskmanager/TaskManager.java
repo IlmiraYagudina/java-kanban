@@ -4,6 +4,7 @@ import tasks.Subtask;
 import tasks.Task;
 
 import java.util.List;
+import java.util.TreeSet;
 
 public interface TaskManager  {
     List<Task> getHistory(); //просмотреть истории задач (последних 10)
@@ -57,4 +58,8 @@ public interface TaskManager  {
     void remove(int id);
 
     void deleteAllSubtasksByEpic(Epic epic);
+
+    Object getEpicSubtasks(Epic epic);
+
+    TreeSet<Task> getPrioritizedTasks();
 }

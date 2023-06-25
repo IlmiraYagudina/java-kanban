@@ -20,6 +20,8 @@ public class InMemoryTaskManager implements TaskManager {
     private final Comparator<Task> taskComparator = Comparator.comparing(Task::getStartTime);
     protected Set<Task> prioritizedTasks = new TreeSet<>(taskComparator);
 
+
+
     public int generateId() {
         return ++id;
     }
@@ -375,6 +377,16 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
+    @Override
+    public Object getEpicSubtasks(Epic epic) {
+        return null;
+    }
+
+    @Override
+    public TreeSet<Task> getPrioritizedTasks() {
+        return null;
+    }
+
     public HistoryManager getHistoryManager() {
         return historyManager;
     }
@@ -409,7 +421,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     private void validateTaskPriority() {
-        List<Task> tasks = getPrioritizedTasks();
+        List<Task> tasks = (List<Task>) prioritizedTasks;
 
         for (int i = 1; i < tasks.size(); i++) {
             Task task = tasks.get(i);
@@ -423,9 +435,6 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
-    private List<Task> getPrioritizedTasks() {
-        return prioritizedTasks.stream().toList();
-    }
 
     @Override
     public String toString() {

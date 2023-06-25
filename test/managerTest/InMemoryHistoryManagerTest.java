@@ -22,7 +22,7 @@ class InMemoryHistoryManagerTest {
     }
 
     protected Task createTask() {
-        return new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 0);
+        return new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 1);
     }
 
     @BeforeEach

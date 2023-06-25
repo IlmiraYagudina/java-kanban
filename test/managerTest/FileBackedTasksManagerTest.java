@@ -38,7 +38,7 @@ class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
 
     @Test
     public void shouldCorrectlySaveAndLoad() {
-        Task task = new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 0);
+        Task task = new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 1);
         manager.createTask(task);
         Epic epic = new Epic("Description", "Title", TaskStatus.NEW, Instant.now(), 0);
         manager.createEpic(epic);
@@ -62,7 +62,7 @@ class FileBackedTasksManagerTest extends TaskManagerTest<InMemoryTaskManager> {
 
     @Test
     public void shouldSaveAndLoadEmptyHistory() {
-        Task task = new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 0);
+        Task task = new Task("Description", "Title", TaskStatus.NEW, Instant.now(), 1);
         manager.createTask(task);
         FileBackedTasksManager fileManager = new FileBackedTasksManager(file);
         fileManager.saveToHistory(task);

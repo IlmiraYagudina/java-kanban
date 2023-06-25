@@ -1,5 +1,8 @@
 package http;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -69,8 +72,10 @@ public class KVTaskClient {
             );
             return response.body();
         } catch (IOException | InterruptedException e) {
+            System.out.println("Во время выполнения запроса ресурса возникла ошибка.\n" +
+                    "Проверьте, пожалуйста, адрес и повторите попытку.");
             e.printStackTrace();
-            return "Во время запроса произошла ошибка";
         }
+        return key;
     }
 }

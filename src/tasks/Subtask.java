@@ -13,8 +13,7 @@ public class Subtask extends Task {
         super(description,
                 name,
                 status,
-                startTime,
-                duration);
+                Instant.now(), 1);
         this.epicId = epicId;
     }
 
