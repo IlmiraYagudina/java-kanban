@@ -1,198 +1,9 @@
-//package http;
-//
-//import adapters.LocalDateTimeAdapter;
-//import com.google.gson.Gson;
-//import com.google.gson.GsonBuilder;
-//import com.sun.net.httpserver.HttpExchange;
-//import com.sun.net.httpserver.HttpHandler;
-//import com.sun.net.httpserver.HttpServer;
-//import taskmanager.FileBackedTasksManager;
-//import taskmanager.TaskManager;
-//import tasks.Epic;
-//import tasks.Subtask;
-//import tasks.Task;
-//
-//import java.io.File;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.OutputStream;
-//import java.net.InetSocketAddress;
-//import java.nio.charset.Charset;
-//import java.nio.charset.StandardCharsets;
-//import java.time.LocalDateTime;
-//import java.util.regex.Pattern;
-//
-//public class HttpTaskServer {
-//    private final TaskManager taskManager;
-//    private final HttpServer httpServer;
-//    private static final int PORT = 8080;
-//    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
-//    private static final Gson gson = new GsonBuilder().
-//            registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter()).
-//            create();
-//
-//    public HttpTaskServer(TaskManager taskManager) throws IOException, InterruptedException {
-//
-//        this.httpServer = HttpServer.create();
-//        httpServer.bind(new InetSocketAddress(PORT), 0);
-//        httpServer.createContext("/tasks/", new TasksHandler());
-//    }
-//    public void start() {
-//
-//        System.out.println("Запускаем сервер на порту " + PORT);
-//
-//        httpServer.start();
-//    }
-//
-//    public void stop() {
-//        System.out.println("Сервер остановлен");
-//        httpServer.stop(0);
-//    }
-//
-//    public static class TasksHandler implements HttpHandler {
-//
-//        @Override
-//        public void handle(HttpExchange exchange) throws IOException {
-//
-//            FileBackedTasksManager fileManager = new FileBackedTasksManager(new File("data.csv"));
-//            FileBackedTasksManager.loadFromFile(new File("data.csv"));
-//
-//            String path = exchange.getRequestURI().getPath();
-//            String method = exchange.getRequestMethod();
-//
-//            String response = "";
-//            int rCode = 404;
-//
-//            switch (method) {
-//                case "GET" -> {
-//                    if (Pattern.matches("^/tasks$", path)) {
-//                        response = gson.toJson(fileManager.getAllTasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/task$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        int id = parserId(exchange.getRequestURI().getQuery());
-//                        response = gson.toJson(fileManager.getTaskById(id));
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/task$", path)) {
-//                        response = gson.toJson(fileManager.getAllTasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/subtask/epic$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        response = gson.toJson(fileManager.getAllTasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/epic$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        response = gson.toJson(fileManager.getAllTasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/epic$", path)) {
-//                        response = gson.toJson(fileManager.getAllEpics());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/subtask$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        response = gson.toJson(fileManager.getAllTasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/subtask$", path)) {
-//                        response = gson.toJson(fileManager.getAllSubtasks());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/history$", path)) {
-//                        response = gson.toJson(fileManager.getHistory());
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/priority$", path)) {
-//                        response = gson.toJson(fileManager.getPrioritizedTasks());
-//                        rCode = 200;
-//                    }
-//                }
-//                case "POST" -> {
-//                    if (Pattern.matches("^/tasks/task$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Task task = gson.fromJson(taskBody, Task.class);
-//                        fileManager.createTask(task);
-//                        rCode = 201;
-//                    } else if (Pattern.matches("^/tasks/epic$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Epic epic = gson.fromJson(taskBody, Epic.class);
-//                        fileManager.createEpic(epic);
-//                        rCode = 201;
-//                    } else if (Pattern.matches("^/tasks/subtask$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Subtask subtask = gson.fromJson(taskBody, Subtask.class);
-//                        fileManager.createSubtask(subtask);
-//                        rCode = 201;
-//                    }
-//                }
-//                case "DELETE" -> {
-//                    if (Pattern.matches("^/tasks/task$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        int id = parserId(exchange.getRequestURI().getQuery());
-//                        fileManager.deleteTaskById(id);
-//                        response = gson.toJson("Задача c id:" + id + " удалена!");
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/task$", path)) {
-//                        fileManager.deleteAllTasks();
-//                        response = gson.toJson("Все задачи удалены");
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/epic$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        int id = parserId(exchange.getRequestURI().getQuery());
-//                        fileManager.deleteEpicById(id);
-//                        response = gson.toJson("Комплексная задача c id:" + id + " удалена!");
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/epic$", path)) {
-//                        fileManager.deleteAllEpics();
-//                        response = gson.toJson("Все комплексные задачи и подзадачи удалены");
-//                        rCode = 200;
-//                    } else if (Pattern.matches("^/tasks/subtask$", path) && exchange.getRequestURI().getQuery() != null) {
-//                        int id = parserId(exchange.getRequestURI().getQuery());
-//                        fileManager.deleteSubtaskById(id); //
-//                        response = gson.toJson("Подзадача c id:" + id + " удалена!");
-//                        rCode = 200;
-//
-//                    }
-//                }
-//                case "PUT" -> {
-//                    if (Pattern.matches("^/tasks/task$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Task task = gson.fromJson(taskBody, Task.class);
-//                        fileManager.updateTask(task);
-//                        rCode = 202;
-//                    } else if (Pattern.matches("^/tasks/epic$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Epic epic = gson.fromJson(taskBody, Epic.class);
-//                        fileManager.updateEpic(epic);
-//                        rCode = 202;
-//                    } else if (Pattern.matches("^/tasks/subtask$", path)) {
-//                        InputStream inputStream = exchange.getRequestBody();
-//                        String taskBody = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
-//                        Subtask subtask = gson.fromJson(taskBody, Subtask.class);
-//                        fileManager.updateSubtask(subtask);
-//                        rCode = 202;
-//                    } else {
-//                        rCode = 404;
-//                        response = gson.toJson("Такой команды нет");
-//                    }
-//                }
-//            }
-//
-//            exchange.sendResponseHeaders(rCode, response.getBytes().length);
-//            try (OutputStream os = exchange.getResponseBody()) {
-//                os.write(response.getBytes());
-//            }
-//        }
-//    }
-//
-//
-//    private static int parserId(String query) {
-//        String[] queryArray = query.split("=");
-//        return Integer.parseInt(queryArray[1]);
-//    }
-//}
-
 package http;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 import taskmanager.Managers;
-import taskmanager.TaskManager;
 import taskmanager.FileBackedTasksManager;
 import tasks.Epic;
 import tasks.Subtask;
@@ -267,10 +78,7 @@ public class HttpTaskServer {
         }
     }
 
-    private void deleteHandler(HttpExchange exchange,
-                               URI uri,
-                               String path,
-                               TaskType taskType) throws IOException {
+    private void deleteHandler(HttpExchange exchange, URI uri, String path, TaskType taskType) throws IOException {
 
         if (uri.toString().matches("^" + path + "$")) {
             switch (taskType) {
@@ -315,10 +123,7 @@ public class HttpTaskServer {
         }
     }
 
-    private void getHandler(HttpExchange exchange,
-                            URI uri,
-                            String path,
-                            TaskType taskType) throws IOException {
+    private void getHandler(HttpExchange exchange, URI uri, String path, TaskType taskType) throws IOException {
 
         if (uri.toString().matches("^" + path + "$")) {
             String response = null;
@@ -365,10 +170,7 @@ public class HttpTaskServer {
         }
     }
 
-    private void postHandler(HttpExchange exchange,
-                             URI uri,
-                             String path,
-                             TaskType taskType) throws IOException {
+    private void postHandler(HttpExchange exchange, URI uri, String path, TaskType taskType) throws IOException {
 
         if (uri.toString().matches("^" + path + "$")) {
 

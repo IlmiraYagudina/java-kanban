@@ -51,18 +51,15 @@ public class InMemoryHistoryManager implements HistoryManager {
                 table.remove(node.getTask().getId());
                 Node prev = node.getPrev();
                 Node next = node.getNext();
-
                 if (head == node) {
                     head = node.getNext();
                 }
                 if (tail == node) {
                     tail = node.getPrev();
                 }
-
                 if (prev != null) {
                     prev.setNext(next);
                 }
-
                 if (next != null) {
                     next.setPrev(prev);
                 }
@@ -92,6 +89,4 @@ public class InMemoryHistoryManager implements HistoryManager {
     public List<Task> getHistory() {
         return list.getTasks();
     }
-
 }
-

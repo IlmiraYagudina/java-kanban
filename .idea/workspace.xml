@@ -5,28 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af93be4a-6bd3-4f68-8079-c5c82897019b" name="Changes" comment="git add --all">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/google_code_gson.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_9_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/java-kanban.iml" beforeDir="false" afterPath="$PROJECT_DIR$/java-kanban.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java-kanban/classpath.index" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java-kanban/classpath.index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/http/HTTPTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/HttpTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/enums/TaskStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/enums/TaskStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/history/HistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/history/HistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/history/InMemoryHistoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/history/InMemoryHistoryManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/http/HttpTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/HttpTaskManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/http/HttpTaskServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/HttpTaskServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/http/KVServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/KVServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/http/KVTaskClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/http/KVTaskClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/FileBackedTasksManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskmanager/InMemoryTaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/InMemoryTaskManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/taskmanager/ManagerValidateException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/ManagerValidateException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskmanager/Managers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/Managers.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/taskmanager/TaskManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/taskmanager/TaskManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Epic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Epic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Subtask.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Subtask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tasks/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tasks/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/httpTest/HTTPTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/httpTest/HttpTaskManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/httpTest/HttpTaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/httpTest/HttpTaskManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/httpTest/HttpTaskServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/httpTest/HttpTaskServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/managerTest/FileBackedTasksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/FileBackedTasksManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/managerTest/InMemoryHistoryManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/InMemoryHistoryManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/managerTest/TaskManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/managerTest/TaskManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +209,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/history/HistoryManager.java</url>
-          <line>7</line>
+          <line>8</line>
           <properties class="history.HistoryManager" method="add">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -224,7 +218,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/history/HistoryManager.java</url>
-          <line>9</line>
+          <line>10</line>
           <properties class="history.HistoryManager" method="remove">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -233,7 +227,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/taskmanager/TaskManager.java</url>
-          <line>57</line>
+          <line>58</line>
           <properties class="taskmanager.TaskManager" method="remove">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -256,12 +250,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/history/HistoryManager.java</url>
-          <line>6</line>
+          <line>7</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>66</line>
+          <line>48</line>
           <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -288,6 +282,11 @@
           <url>file://$PROJECT_DIR$/src/Main.java</url>
           <line>20</line>
           <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/adapters/InstantAdapter.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="60" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.NullPointerException" package="java.lang" />

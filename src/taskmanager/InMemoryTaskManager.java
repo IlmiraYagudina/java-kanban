@@ -21,7 +21,6 @@ public class InMemoryTaskManager implements TaskManager {
     protected Set<Task> prioritizedTasks = new TreeSet<>(taskComparator);
 
 
-
     public int generateId() {
         return ++id;
     }

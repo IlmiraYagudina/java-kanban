@@ -30,6 +30,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public FileBackedTasksManager() {
         this.file = Path.of("resources/data.csv").toFile();
     }
+
     public static void loadFromFile(File file) {
         String[] content;
         Map<Long, Task> taskMap = new HashMap<>();
@@ -261,8 +262,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     // Метод сохранения задачи в строку
     private String toString(Task task) {
-        String[] toJoin = {Integer.toString(task.getId()), getType(task).toString(), task.getName(),
-                task.getStatus().toString(), task.getDescription(), getParentEpicId(task)};
+        String[] toJoin = {Integer.toString(task.getId()), getType(task).toString(), task.getName(), task.getStatus().toString(), task.getDescription(), getParentEpicId(task)};
         return String.join(",", toJoin);
     }
 

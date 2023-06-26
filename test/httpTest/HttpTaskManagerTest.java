@@ -1,6 +1,5 @@
 package httpTest;
 
-import history.HistoryManager;
 import http.HttpTaskManager;
 import http.KVServer;
 import org.junit.jupiter.api.AfterEach;
@@ -67,10 +66,8 @@ class HttpTaskManagerTest<T extends TaskManagerTest<HttpTaskManager>> {
     @Test
     public void shouldLoadSubtasks() {
         Epic epic1 = new Epic("description1", "name1", TaskStatus.NEW, Instant.now(), 5);
-        Subtask subtask1 = new Subtask("description1", "name1", TaskStatus.NEW, epic1.getId()
-                , Instant.now(), 6);
-        Subtask subtask2 = new Subtask("description2", "name2", TaskStatus.NEW, epic1.getId(),
-                Instant.now(), 7);
+        Subtask subtask1 = new Subtask("description1", "name1", TaskStatus.NEW, epic1.getId(), Instant.now(), 6);
+        Subtask subtask2 = new Subtask("description2", "name2", TaskStatus.NEW, epic1.getId(), Instant.now(), 7);
         manager.createSubtask(subtask1);
         manager.createSubtask(subtask2);
         manager.getSubtaskById(subtask1.getId());

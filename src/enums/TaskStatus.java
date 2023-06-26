@@ -12,6 +12,7 @@ public enum TaskStatus {
     public String getTranslation() {
         return translation;
     }
+
     public String toString() {
         return translation;
     }

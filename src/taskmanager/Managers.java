@@ -16,6 +16,7 @@ public class Managers {
     public static InMemoryTaskManager getInMemoryTaskManager() {
         return new InMemoryTaskManager();
     }
+
     public static HistoryManager getDefaultHistory() {
         return new InMemoryHistoryManager();
     }
@@ -28,11 +29,10 @@ public class Managers {
         return new FileBackedTasksManager(new File("resources/data.csv"));
     }
 
-    public static Gson getGson(){
+    public static Gson getGson() {
         return new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .create();
     }
-
 }

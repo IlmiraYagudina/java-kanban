@@ -1,4 +1,5 @@
 package taskmanager;
+
 import tasks.Epic;
 import tasks.Subtask;
 import tasks.Task;
@@ -6,7 +7,7 @@ import tasks.Task;
 import java.util.List;
 import java.util.TreeSet;
 
-public interface TaskManager  {
+public interface TaskManager {
     List<Task> getHistory(); //просмотреть истории задач (последних 10)
 
     Task createTask(Task task);//добавить новую задачу
